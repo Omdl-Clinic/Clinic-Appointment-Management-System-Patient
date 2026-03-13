@@ -13,6 +13,8 @@ import type { ISchedule } from "../../../@types/interface";
 import Filter from "../../../components/admin/scheduleTable/filter";
 import type { FiltersState } from "../../../@types/types";
 import dayjs from "dayjs";
+import { useDarkMode } from "../../../hooks/useDarkMode";
+import { selectStyles } from "../../../components/selectStyles";
 
 interface ScheduleFormData {
   doctorId: string;
@@ -239,6 +241,7 @@ function AddService({
   setOpenAddModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [doctorOptions, setDoctorOptions] = useState<Options[]>([]);
+  const { darkMode } = useDarkMode();
 
   const selectedDoctor =
     doctorOptions.find((opt) => opt.value === formState.doctorId) || null;
@@ -295,6 +298,11 @@ function AddService({
             isClearable={true}
             options={doctorOptions}
             value={selectedDoctor}
+            menuPortalTarget={document.body}
+            menuPosition="fixed"
+            styles={{
+              ...selectStyles(darkMode),
+            }}
             onChange={(val) =>
               setFormState((prev) => ({
                 ...prev,
@@ -380,6 +388,7 @@ function ServiceModal({
   title: string;
 }) {
   const [doctorOptions, setDoctorOptions] = useState<Options[]>([]);
+  const { darkMode } = useDarkMode();
 
   const selectedDoctor =
     doctorOptions.find((opt) => opt.value === formState.doctorId) || null;
@@ -433,6 +442,11 @@ function ServiceModal({
             isClearable={true}
             options={doctorOptions}
             value={selectedDoctor}
+            menuPortalTarget={document.body}
+            menuPosition="fixed"
+            styles={{
+              ...selectStyles(darkMode),
+            }}
             onChange={(val) =>
               setFormState((prev) => ({
                 ...prev,

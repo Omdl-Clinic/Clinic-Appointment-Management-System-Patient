@@ -10,6 +10,8 @@ import { BACKEND_DOMAIN } from "../../configs/config";
 import type { SingleValue, MultiValue } from "react-select";
 import type { IAppointment } from "../../@types/interface";
 import type { FiltersState } from "../../@types/types";
+import { getSelectStyles } from "../../components/multiSelectStyles";
+import { useDarkMode } from "../../hooks/useDarkMode";
 
 // Form data type
 interface DoctorFormData {
@@ -279,6 +281,7 @@ function AddService({
     (sum, svc) => sum + svc.price,
     0,
   );
+  const { darkMode } = useDarkMode();
 
   // Fetch available services — now store _id as value and price directly
   useEffect(() => {
@@ -327,6 +330,7 @@ function AddService({
             isMulti
             options={serviceOptions}
             value={selectedServices}
+            styles={getSelectStyles<ServiceOption, true>(darkMode)}
             onChange={(selected) => {
               if (selected.length <= 3) {
                 const arr = [...selected];

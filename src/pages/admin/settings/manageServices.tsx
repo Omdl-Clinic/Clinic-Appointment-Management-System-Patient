@@ -11,12 +11,13 @@ import type { SingleValue } from "react-select";
 import type { IService } from "../../../@types/interface";
 import Filter from "../../../components/admin/serviceTable/filter";
 import type { FiltersState } from "../../../@types/types";
+import { useDarkMode } from "../../../hooks/useDarkMode";
 
 // price field removed — now lives in ManagePrices
 interface ServiceFormData {
   name: string;
   status: string;
-  price: number;
+  price: string;
 }
 
 function ManageServices() {
@@ -39,7 +40,7 @@ function ManageServices() {
   const [formState, setFormState] = useState<ServiceFormData>({
     name: "",
     status: "",
-    price: 0,
+    price: "",
   });
 
   const [editServiceId, setEditServiceId] = useState<string | null>(null);
@@ -47,7 +48,7 @@ function ManageServices() {
   const [editFormState, setEditFormState] = useState<ServiceFormData>({
     name: "",
     status: "",
-    price: 0,
+    price: "",
   });
 
   const tabs = ["All"];
@@ -59,12 +60,12 @@ function ManageServices() {
         {
           name: formData.name,
           status: formData.status,
-          price: formData.price,
+          price: Number(formData.price),
         },
         { withCredentials: true },
       );
       setOpenEditModal(false);
-      setEditFormState({ name: "", status: "", price: 0 });
+      setEditFormState({ name: "", status: "", price: "" });
       setCurrentPage(1);
     } catch (err) {
       console.error("Service update failed:", err);
@@ -80,12 +81,12 @@ function ManageServices() {
         {
           name: formData.name,
           status: formData.status,
-          price: formData.price,
+          price: Number(formData.price),
         },
         { withCredentials: true },
       );
       setOpenAddModal(false);
-      setFormState({ name: "", status: "", price: 0 });
+      setFormState({ name: "", status: "", price: "" });
       setCurrentPage(1);
       setFilters({});
       setSearch("");
@@ -198,7 +199,7 @@ function ManageServices() {
               setEditFormState({
                 name: service.name,
                 status: service.status,
-                price: service.price,
+                price: service.price.toString(),
               });
               setOpenEditModal(true);
               setEditServiceId(service._id);
@@ -221,6 +222,8 @@ function AddService({
   setFormState: React.Dispatch<React.SetStateAction<ServiceFormData>>;
   setOpenAddModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const { darkMode } = useDarkMode();
+
   return (
     <form
       onClick={(e) => e.stopPropagation()}
@@ -262,12 +265,11 @@ function AddService({
           <input
             required
             type="number"
+            min="0"
+            placeholder="Enter price"
             value={formState.price}
             onChange={(e) =>
-              setFormState((prev) => ({
-                ...prev,
-                price: Number(e.target.value),
-              }))
+              setFormState((prev) => ({ ...prev, price: e.target.value }))
             }
             className="border border-zinc-300 dark:border-zinc-700 outline-none rounded-md px-2 py-0.5 w-full"
           />
@@ -285,7 +287,8 @@ function AddService({
             onChange={(e) =>
               setFormState((prev) => ({ ...prev, status: e.target.value }))
             }
-            className="border border-zinc-300 dark:border-zinc-700 outline-none rounded-md px-2 py-0.5 w-full"
+            className={`border outline-none rounded-md px-2 py-0.5 w-full
+    ${darkMode ? "bg-zinc-900 text-zinc-100 border-zinc-700" : "bg-white text-zinc-900 border-zinc-300"}`}
           >
             <option value="" disabled>
               Select Status
@@ -299,7 +302,7 @@ function AddService({
           <button
             onClick={() => {
               setOpenAddModal(false);
-              setFormState({ name: "", status: "", price: 0 });
+              setFormState({ name: "", status: "", price: "" });
             }}
             type="button"
             className="cursor-pointer"
@@ -331,6 +334,8 @@ function ServiceModal({
   onClose: () => void;
   title: string;
 }) {
+  const { darkMode } = useDarkMode();
+
   return (
     <form
       onClick={(e) => e.stopPropagation()}
@@ -367,12 +372,11 @@ function ServiceModal({
           <input
             required
             type="number"
+            min="0"
+            placeholder="Enter price"
             value={formState.price}
             onChange={(e) =>
-              setFormState((prev) => ({
-                ...prev,
-                price: Number(e.target.value),
-              }))
+              setFormState((prev) => ({ ...prev, price: e.target.value }))
             }
             className="border border-zinc-300 dark:border-zinc-700 outline-none rounded-md px-2 py-0.5 w-full"
           />
@@ -388,7 +392,9 @@ function ServiceModal({
             onChange={(e) =>
               setFormState((prev) => ({ ...prev, status: e.target.value }))
             }
-            className="border border-zinc-300 dark:border-zinc-700 outline-none rounded-md px-2 py-0.5 w-full"
+            className={`border outline-none rounded-md px-2 py-0.5 w-full
+    ${darkMode ? "bg-zinc-900 text-zinc-100 border-zinc-700" : "bg-white text-zinc-900 border-zinc-300"}
+  `}
           >
             <option value="" disabled>
               Select Status

@@ -12,6 +12,8 @@ import type { SingleValue, MultiValue } from "react-select";
 import type { IAppointment } from "../../../../@types/interface";
 import Filter from "../../../../components/admin/appointmentTable/archiveAppointments/filter";
 import type { FiltersState } from "../../../../@types/types";
+import { getSelectStyles } from "../../../../components/multiSelectStyles";
+import { useDarkMode } from "../../../../hooks/useDarkMode";
 
 interface DoctorFormData {
   email: string;
@@ -209,6 +211,7 @@ function AddService({
 }) {
   const [serviceOptions, setServiceOptions] = useState<ServiceOption[]>([]);
   const [selectedServices, setSelectedServices] = useState<ServiceOption[]>([]);
+  const { darkMode } = useDarkMode();
 
   const estimatedFee = selectedServices.reduce(
     (sum, svc) => sum + svc.price,
@@ -277,6 +280,7 @@ function AddService({
             isMulti
             options={serviceOptions}
             value={selectedServices}
+            styles={getSelectStyles<ServiceOption, true>(darkMode)}
             onChange={(selected) => {
               if (selected.length <= 3) {
                 const arr = [...selected];
