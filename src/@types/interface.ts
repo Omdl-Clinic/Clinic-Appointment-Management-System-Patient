@@ -123,6 +123,7 @@ export interface IAppointmentLineGraphResponse {
 }
 
 export interface PopulatedDoctor {
+  suffix: string;
   _id: string;
   firstname: string;
   middlename?: string;

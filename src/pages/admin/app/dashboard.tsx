@@ -557,7 +557,8 @@ function Doctors() {
               />
               <aside>
                 <h3 className="font-bold">
-                  {doctor.firstname} {doctor.middlename} {doctor.surname}
+                  {doctor.firstname} {doctor.middlename} {doctor.surname}{" "}
+                  {doctor.suffix}
                 </h3>
                 <p className="text-blue-500 text-xs px-1.5 py-0.5 bg-blue-200/30 border border-blue-500 w-fit rounded-lg">
                   {doctor.specialization}

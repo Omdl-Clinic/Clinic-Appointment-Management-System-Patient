@@ -207,7 +207,8 @@ function Table({
                                       {doc.middlename
                                         ? `${doc.middlename[0]}.`
                                         : ""}{" "}
-                                      {doc.surname}
+                                      {doc.surname}{" "}
+                                      {doc.suffix ? doc.suffix : ""}
                                     </p>
                                   </div>
                                 ),
