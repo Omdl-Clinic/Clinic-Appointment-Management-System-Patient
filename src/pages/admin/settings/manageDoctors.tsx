@@ -16,6 +16,7 @@ interface DoctorFormData {
   firstname: string;
   middlename: string;
   surname: string;
+  suffix: string;
   specialization: string;
 }
 
@@ -40,6 +41,7 @@ function ManageDoctors() {
     firstname: "",
     middlename: "",
     surname: "",
+    suffix: "",
     specialization: "",
   });
 
@@ -49,6 +51,7 @@ function ManageDoctors() {
     firstname: "",
     middlename: "",
     surname: "",
+    suffix: "",
     specialization: "",
   });
 
@@ -62,6 +65,7 @@ function ManageDoctors() {
           firstname: formData.firstname,
           middlename: formData.middlename,
           surname: formData.surname,
+          suffix: formData.suffix,
           specialization: formData.specialization,
         },
         { withCredentials: true },
@@ -73,6 +77,7 @@ function ManageDoctors() {
         firstname: "",
         middlename: "",
         surname: "",
+        suffix: "",
         specialization: "",
       });
       setCurrentPage(1);
@@ -92,6 +97,7 @@ function ManageDoctors() {
           firstname: formData.firstname,
           middlename: formData.middlename,
           surname: formData.surname,
+          suffix: formData.suffix,
           specialization: formData.specialization,
         },
         { withCredentials: true },
@@ -103,6 +109,7 @@ function ManageDoctors() {
         firstname: "",
         middlename: "",
         surname: "",
+        suffix: "",
         specialization: "",
       });
 
@@ -220,6 +227,7 @@ function ManageDoctors() {
                 firstname: doctor.firstname,
                 middlename: doctor.middlename,
                 surname: doctor.surname,
+                suffix: doctor.suffix || "",
                 specialization: doctor.specialization,
               });
 
@@ -313,6 +321,23 @@ function AddService({
           />
         </div>
         <div className="flex flex-col gap-1 w-full">
+          <label htmlFor="suffix">Suffix</label>
+          <input
+            type="text"
+            name="suffix"
+            id="suffix"
+            value={formState.suffix}
+            onChange={(e) =>
+              setFormState((prev) => ({
+                ...prev,
+                suffix: e.target.value,
+              }))
+            }
+            placeholder="e.g. Jr., Sr., III"
+            className="border border-zinc-300 dark:border-zinc-700 outline-none rounded-md px-2 py-0.5 w-full"
+          />
+        </div>
+        <div className="flex flex-col gap-1 w-full">
           <label htmlFor="specialization">
             Specialization <span className="text-red-500">*</span>
           </label>
@@ -341,6 +366,7 @@ function AddService({
                 firstname: "",
                 middlename: "",
                 surname: "",
+                suffix: "",
                 specialization: "",
               });
             }}
@@ -427,6 +453,23 @@ function ServiceModal({
             onChange={(e) =>
               setFormState((prev) => ({ ...prev, surname: e.target.value }))
             }
+            className="border border-zinc-300 dark:border-zinc-700 outline-none rounded-md px-2 py-0.5 w-full"
+          />
+        </div>
+        <div className="flex flex-col gap-1 w-full">
+          <label htmlFor="suffix">Suffix</label>
+          <input
+            type="text"
+            name="suffix"
+            id="suffix"
+            value={formState.suffix}
+            onChange={(e) =>
+              setFormState((prev) => ({
+                ...prev,
+                suffix: e.target.value,
+              }))
+            }
+            placeholder="e.g. Jr., Sr., III"
             className="border border-zinc-300 dark:border-zinc-700 outline-none rounded-md px-2 py-0.5 w-full"
           />
         </div>

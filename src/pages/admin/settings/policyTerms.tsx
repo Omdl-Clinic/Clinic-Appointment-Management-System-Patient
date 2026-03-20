@@ -89,15 +89,15 @@ function PolictyTerms() {
           <section className="flex flex-col gap-3 relative">
             <h3 className="font-bold text-lg mb-1">Terms and Conditions</h3>
             <p>
-              By using SevenCare services, patients and users agree to the
-              following terms and conditions:
+              By using OMDL services, patients and users agree to the following
+              terms and conditions:
             </p>
             <ol className="pl-6">
               <li>1. Use of Services</li>
               <ol className="pl-6">
                 <li>
-                  ● SevenCare provides medical consultation, appointment
-                  scheduling, and patient care services.
+                  ● OMDL provides medical consultation, appointment scheduling,
+                  and patient care services.
                 </li>
                 <li>
                   ● Patients must provide accurate personal and health
@@ -112,8 +112,8 @@ function PolictyTerms() {
                   applicable privacy laws.
                 </li>
                 <li>
-                  ● SevenCare reserves the right to use anonymized data for
-                  research, reporting, and service improvement.
+                  ● OMDL reserves the right to use anonymized data for research,
+                  reporting, and service improvement.
                 </li>
               </ol>
 
@@ -145,11 +145,11 @@ function PolictyTerms() {
               <li>5. Limitations of Liability</li>
               <ol className="pl-6">
                 <li>
-                  ● SevenCare strives to provide the best medical services but
-                  does not guarantee specific outcomes.
+                  ● OMDL strives to provide the best medical services but does
+                  not guarantee specific outcomes.
                 </li>
                 <li>
-                  ● SevenCare shall not be held liable for circumstances beyond
+                  ● OMDL shall not be held liable for circumstances beyond
                   reasonable control, such as third-party service interruptions.
                 </li>
               </ol>
@@ -157,8 +157,8 @@ function PolictyTerms() {
               <li>6. Amendments</li>
               <ol className="pl-6">
                 <li>
-                  ● SevenCare reserves the right to update or revise this
-                  Privacy Policy and Terms & Conditions at any time, with notice
+                  ● OMDL reserves the right to update or revise this Privacy
+                  Policy and Terms & Conditions at any time, with notice
                   provided through official channels.
                 </li>
               </ol>

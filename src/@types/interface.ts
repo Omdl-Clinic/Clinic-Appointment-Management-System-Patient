@@ -83,6 +83,7 @@ export interface IDoctor {
   firstname: string;
   middlename: string;
   surname: string;
+  suffix: string;
   specialization: string;
   schedule: Date;
   createdAt: Date;

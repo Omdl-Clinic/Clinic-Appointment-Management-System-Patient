@@ -83,6 +83,9 @@ function Table({
                         <td className="py-2 px-5 font-medium text-zinc-950 dark:text-zinc-50">
                           <p className="w-fit whitespace-nowrap">{d.surname}</p>
                         </td>
+                        <td className="py-2 px-5 font-medium text-zinc-950 dark:text-zinc-50">
+                          <p className="w-fit whitespace-nowrap">{d.suffix}</p>
+                        </td>
                         <td className="py-2 px-5">{d.specialization}</td>
                         <td className="py-2 px-5 whitespace-nowrap">
                           {dayjs(d.createdAt).format("MM/DD/YY, hh:mm:ss")}

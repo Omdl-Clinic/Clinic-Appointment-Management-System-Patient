@@ -27,6 +27,14 @@ export const tableHeaders = [
     sortable: true,
   },
   {
+    name: "Suffix",
+    icon: <ShieldUser className="w-4" />,
+    filter: false,
+    singleValue: false,
+    options: [],
+    sortable: true,
+  },
+  {
     name: "Specialization",
     icon: <GraduationCap className="w-4" />,
     filter: false,
