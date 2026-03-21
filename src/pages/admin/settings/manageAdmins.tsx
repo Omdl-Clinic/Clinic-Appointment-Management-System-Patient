@@ -15,7 +15,6 @@ import type { FiltersState } from "../../../@types/types";
 interface AdminFormData {
   firstname: string;
   surname: string;
-  maritalStatus: string;
   gender: string;
   birthDate: string;
   address: string;
@@ -44,7 +43,6 @@ function ManageAdmins() {
   const [formState, setFormState] = useState<AdminFormData>({
     firstname: "",
     surname: "",
-    maritalStatus: "",
     gender: "",
     birthDate: "",
     address: "",
@@ -62,7 +60,7 @@ function ManageAdmins() {
       await axios.post(`${BACKEND_DOMAIN}/api/v1/auth/signup`, {
         firstname: formData.firstname,
         surname: formData.surname,
-        maritalStatus: formData.maritalStatus,
+        maritalStatus: "single",
         gender: formData.gender,
         birthDate: formData.birthDate,
         address: formData.address,
@@ -77,7 +75,6 @@ function ManageAdmins() {
       setFormState({
         firstname: "",
         surname: "",
-        maritalStatus: "",
         gender: "",
         birthDate: "",
         address: "",
@@ -359,31 +356,6 @@ function AddAdmin({
               <option value="female">Female</option>
             </select>
           </div>
-          <div className="flex flex-col gap-1 w-full">
-            <label htmlFor="maritalStatus">
-              Marital Status <span className="text-red-500">*</span>
-            </label>
-            <select
-              required
-              name="maritalStatus"
-              id="maritalStatus"
-              value={formState.maritalStatus}
-              onChange={(e) =>
-                setFormState((prev) => ({
-                  ...prev,
-                  maritalStatus: e.target.value,
-                }))
-              }
-              className="border border-zinc-300 dark:border-zinc-700 outline-none rounded-md px-2 py-0.5 w-full"
-            >
-              <option value="" disabled>
-                Select Marital
-              </option>
-              <option value="single">Single</option>
-              <option value="widowed">Widowed</option>
-              <option value="married">Married</option>
-            </select>
-          </div>
         </div>
 
         <div className="flex flex-col gap-1 w-full">
@@ -433,7 +405,6 @@ function AddAdmin({
               setFormState({
                 firstname: "",
                 surname: "",
-                maritalStatus: "",
                 gender: "",
                 birthDate: "",
                 address: "",
